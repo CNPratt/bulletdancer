@@ -19,6 +19,8 @@ public class TreasureAI : MonoBehaviour
     public static float enMoveSpeed = 1;
     public int enHealthFactor = 1;
     private int enHealth = 1;
+    public GameObject deathAnim;
+    public AudioClip deathSFX;
 
 
     public void OnCollisionEnter2D(Collision2D collision)
@@ -30,6 +32,8 @@ public class TreasureAI : MonoBehaviour
             enHealth = enHealth - 1;
             if (enHealth <= 0)
             {
+                AudioSource.PlayClipAtPoint(deathSFX, transform.position, .25f);
+                Instantiate(deathAnim, transform.position, transform.rotation);
                 Destroy(gameObject);
             }
         }
@@ -63,6 +67,7 @@ public class TreasureAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         isLeftOccupied = true;
         isRightOccupied = true;
         isUpOccupied = true;

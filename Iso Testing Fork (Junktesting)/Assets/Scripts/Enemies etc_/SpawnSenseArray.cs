@@ -7,7 +7,7 @@ public class SpawnSenseArray : MonoBehaviour
     public int randomspawnRoller;
     public GameObject firstPoint;
     public static GameObject randomOpenPoint;
-    public List<GameObject> spawnPoints = new List<GameObject>();
+    public static List<GameObject> spawnPoints = new List<GameObject>();
     public static bool isOneOpen = true;
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -40,6 +40,7 @@ public class SpawnSenseArray : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        spawnPoints.Clear();
         randomOpenPoint = firstPoint;
     }
 

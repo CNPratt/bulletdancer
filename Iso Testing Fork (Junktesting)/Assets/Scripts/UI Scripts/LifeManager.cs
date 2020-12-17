@@ -10,6 +10,8 @@ public class LifeManager : MonoBehaviour
     public GameObject playerPrefab;
     public GameObject GODisplay;
     public GameObject GODisplay2;
+    public GameObject GODisplay3;
+    public GameObject newhiscore;
 
     public bool waitforRestart;
 
@@ -21,7 +23,7 @@ public class LifeManager : MonoBehaviour
         Vector3 startPoint = new Vector3(-1.5f, 0, 0);
         Quaternion startRoto = Quaternion.Euler(0, 0, 0);
         Instantiate(playerPrefab, startPoint, startRoto);
-        pLives = 3;
+        pLives = 1;
         GameObject GODisplay = GameObject.Find("GameOverDisplay");
         GODisplay2 = GameObject.Find("Restarttext");
         GODisplay.GetComponent<Text>().enabled = false;
@@ -58,6 +60,7 @@ public class LifeManager : MonoBehaviour
                 }
                 if (pLives <= 0)
                 {
+                    GameObject.Find("pIcon").GetComponent<iconScript>().iconState = 2;
                     EndGame();
                 }
             }
@@ -65,12 +68,27 @@ public class LifeManager : MonoBehaviour
         
         while(waitforRestart == true)
         {
-            if(Input.anyKeyDown == true)
+            if (ScoreManager.totalScore > PlayerPrefs.GetInt("hiScore"))
             {
-     //           Debug.Log("Should restart here");
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-                Time.timeScale = 1f;
+                newhiscore.GetComponent<Text>().enabled = true;
+                PlayerPrefs.SetInt("hiScore", ScoreManager.totalScore);
+                Debug.Log(PlayerPrefs.GetInt("hiScore"));
             }
+
+            if (Input.GetKeyDown(KeyCode.Space) == true)
+            {
+                //           Debug.Log("Should restart here");
+                Time.timeScale = 1f;
+                SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
+                
+            }
+
+            if (Input.GetKeyDown(KeyCode.H) == true)
+            {
+
+                SceneManager.LoadSceneAsync("Start Screen", LoadSceneMode.Single);
+            }
+
             return;
         }
 
@@ -79,9 +97,15 @@ public class LifeManager : MonoBehaviour
             Time.timeScale = .2f;
             GODisplay.GetComponent<Text>().enabled = true;
             GODisplay2.GetComponent<Text>().enabled = true;
+            GODisplay3.GetComponent<Image>().enabled = true;
             waitforRestart = true;
             ComboManager.comboCounter = 0;
             
         }
+
+  //      if(Input.GetKeyDown("p"))
+  //      {
+  //          GameObject.Find("Player(Clone)").GetComponent<HealthMech>().playerHealth = GameObject.Find("Player(Clone)").GetComponent<HealthMech>().playerHealth - 100;
+  //      }
     }
 }

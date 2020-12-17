@@ -27,6 +27,8 @@ public class AltEnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        totalSpawned = 0;
+        totalKills = 1;
         spawnTime = 2f;
         canSpawn = true;
 
@@ -36,7 +38,7 @@ public class AltEnemySpawner : MonoBehaviour
     void Update()
     {
         //        Debug.Log(spawnTime);
-        //Debug.Log("Kills " + totalKills);
+//        Debug.Log(totalKills);
         //Debug.Log("Spawned " + totalSpawned);
         //Debug.Log("Onscreen total " + (totalSpawned - (totalKills - 1)));
 
@@ -44,9 +46,11 @@ public class AltEnemySpawner : MonoBehaviour
         {
             {
                   yield return new WaitForSeconds(.2f);
-                if (totalSpawned - (totalKills - 1) <= 5)
+     //           if (totalSpawned - (totalKills - 1) <= 5)
+                  if(SpawnSenseArray.spawnPoints.Count >= 55)
                 {
-                    //Debug.Log(totalKills);
+                    Debug.Log("spawned " + totalSpawned);
+                    Debug.Log("killed " + totalKills);
                     //Debug.Log("Low enemies triggered");
                     StartCoroutine(enrollMethodFree());
                 }
@@ -54,7 +58,8 @@ public class AltEnemySpawner : MonoBehaviour
 
             }
         }
-        if ((totalSpawned - (totalKills - 1) <= 5))
+        //     if ((totalSpawned - (totalKills - 1) <= 5))
+        if (SpawnSenseArray.spawnPoints.Count >= 55)
         {
             StartCoroutine(lowEnRefill());
         }

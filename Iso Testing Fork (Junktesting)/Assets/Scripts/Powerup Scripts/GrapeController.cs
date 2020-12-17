@@ -25,6 +25,8 @@ public class GrapeController : MonoBehaviour
     // Update is called once per frame
     void Start()
     {
+        GrapeOn = false;
+
         StartCoroutine(pupCycle());
 
         IEnumerator pupCycle()

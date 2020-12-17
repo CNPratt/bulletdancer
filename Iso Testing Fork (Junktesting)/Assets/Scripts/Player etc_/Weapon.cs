@@ -58,7 +58,9 @@ public class Weapon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        plumDestro = false;
+        appleCounter = 0;
+        melonSwitch = false;
     }
     
     // Update is called once per frame
@@ -101,12 +103,12 @@ public class Weapon : MonoBehaviour
         }
 
 
-        if (Input.GetKeyDown("space") && canShoot == true && regWeap == true)
+        if (Input.GetKeyDown("space") && canShoot == true && regWeap == true && pausefunc.pauseOn == false)
         {
             StartCoroutine(ShootRegWeap());
         }
 
-        if (Input.GetKeyDown("space") && canShoot == true && regWeap == false && diagWeap == true)
+        if (Input.GetKeyDown("space") && canShoot == true && regWeap == false && diagWeap == true && pausefunc.pauseOn == false)
         {
             StartCoroutine(ShootDiagWeap());
         }

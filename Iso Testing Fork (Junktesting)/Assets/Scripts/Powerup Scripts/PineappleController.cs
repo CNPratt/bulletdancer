@@ -25,6 +25,8 @@ public class PineappleController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PineappleOn = false;
+
         StartCoroutine(pupCycle());
 
         IEnumerator pupCycle()

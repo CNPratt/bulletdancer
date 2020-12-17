@@ -25,6 +25,8 @@ public class KiwiController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        KiwiOn = false;
+
         StartCoroutine(pupCycle());
 
         IEnumerator pupCycle()

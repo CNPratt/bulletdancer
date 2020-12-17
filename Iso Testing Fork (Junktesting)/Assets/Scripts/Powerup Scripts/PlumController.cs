@@ -25,6 +25,8 @@ public class PlumController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PlumOn = false;
+
         StartCoroutine(pupCycle());
 
         IEnumerator pupCycle()

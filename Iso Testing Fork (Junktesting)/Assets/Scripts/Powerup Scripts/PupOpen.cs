@@ -23,7 +23,7 @@ public class PupOpen : MonoBehaviour
         //
         if (hit.collider == true)
         {
-            Debug.Log(hit.collider.tag);
+//            Debug.Log(hit.collider.tag);
         }
 //
         if (hit == false)

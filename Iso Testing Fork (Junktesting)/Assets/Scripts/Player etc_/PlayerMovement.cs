@@ -113,7 +113,7 @@ public class PlayerMovement : MonoBehaviour
         IEnumerator pMoveInterval()
         {
 //changed from while to if:
-            if (canMove == true)
+            if (canMove == true && pausefunc.pauseOn == false)
             {
 
                 if (Input.GetKey("a") && cellLeftOpen == true)

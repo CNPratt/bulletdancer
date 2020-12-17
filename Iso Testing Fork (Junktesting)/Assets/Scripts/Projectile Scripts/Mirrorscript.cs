@@ -20,7 +20,7 @@ public class Mirrorscript : MonoBehaviour
             //      {
             //               Debug.Log(collision.collider.name);
 
-                AudioSource.PlayClipAtPoint(reflectSFX, transform.position, .5f);
+                AudioSource.PlayClipAtPoint(reflectSFX, transform.position, 1f);
 
                 Object.Destroy(collision.collider.gameObject);
                 Instantiate(bullet1, collision.contacts[0].point, transform.rotation);

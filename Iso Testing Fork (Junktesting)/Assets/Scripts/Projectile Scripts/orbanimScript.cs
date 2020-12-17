@@ -8,21 +8,16 @@ public class orbanimScript : MonoBehaviour
     public bool orbToggle = false;
     public GameObject deathAnim;
     public GameObject instAnim;
-    public bool isQuitting;
 
-    void OnApplicationQuit()
-    {
-        isQuitting = true;
-    }
-
-    private void OnDestroy()
-    {
-        if (isQuitting == false)
-        {
-            Instantiate(deathAnim, transform.position, transform.rotation);
-        }
-    }
-
+//    private void OnDestroy()
+//    {
+//        if (ScoreManager.quitOn == true)
+//        { return; }
+//        else
+//        {
+//            Instantiate(deathAnim, transform.position, transform.rotation);
+//        }
+//
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +28,7 @@ public class orbanimScript : MonoBehaviour
         IEnumerator orbDestro()
         {
             yield return new WaitForSeconds(2f);
+            Instantiate(deathAnim, transform.position, transform.rotation);
             Destroy(gameObject);
         }
 

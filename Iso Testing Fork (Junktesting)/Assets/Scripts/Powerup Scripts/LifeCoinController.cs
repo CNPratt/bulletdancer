@@ -25,6 +25,8 @@ public class LifeCoinController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        LifeCoinOn = false;
+
         StartCoroutine(pupCycle());
 
         IEnumerator pupCycle()

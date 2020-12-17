@@ -41,7 +41,7 @@ public class HealthMech : MonoBehaviour
         if (collision.collider.name == "enbulletPrefab(Clone)" && PlayerMovement.pInvulOn == false)
         {
             StartCoroutine(hitFlash());
-
+            GameObject.Find("pIcon").GetComponent<iconScript>().iconState = 1;
             //Debug.Log("take dmg");
             playerHealth = playerHealth - 1;
         }
@@ -53,12 +53,14 @@ public class HealthMech : MonoBehaviour
         }
         if (collision.collider.name == "en3bulletPrefab(Clone)" && PlayerMovement.pInvulOn == false)
         {
+            GameObject.Find("pIcon").GetComponent<iconScript>().iconState = 1;
             StartCoroutine(hitFlash());
             //Debug.Log("take dmg");
             playerHealth = playerHealth - 5;
         }
         if (collision.collider.name == "dgdEnbulletPrefab(Clone)" && PlayerMovement.pInvulOn == false)
         {
+            GameObject.Find("pIcon").GetComponent<iconScript>().iconState = 1;
             StartCoroutine(hitFlash());
             //Debug.Log("take dmg");
             playerHealth = playerHealth - 3;
@@ -66,12 +68,14 @@ public class HealthMech : MonoBehaviour
 
         if (collision.collider.name == "dguEnbulletPrefab(Clone)" && PlayerMovement.pInvulOn == false)
         {
+            GameObject.Find("pIcon").GetComponent<iconScript>().iconState = 1;
             StartCoroutine(hitFlash());
             //Debug.Log("take dmg");
             playerHealth = playerHealth - 3;
         }
         if (collision.collider.name == "Shockorb" && PlayerMovement.pInvulOn == false)
         {
+            GameObject.Find("pIcon").GetComponent<iconScript>().iconState = 1;
             StartCoroutine(hitFlash());
             //Debug.Log("take dmg");
             playerHealth = playerHealth - 3;
@@ -83,6 +87,7 @@ public class HealthMech : MonoBehaviour
         {
             if (shockOn == false)
             {
+                GameObject.Find("pIcon").GetComponent<iconScript>().iconState = 1;
                 StartCoroutine(hitFlash());
                 StartCoroutine(shockDMG());
             }

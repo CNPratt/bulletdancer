@@ -200,6 +200,8 @@ MonoBehaviour:
   isUpOccupied: 0
   isDownOccupied: 0
   enHealthFactor: 1
+  deathAnim: {fileID: 3528985178324042955, guid: bac0de718af2d46baa692bcbd264ae93, type: 3}
+  deathSFX: {fileID: 8300000, guid: 8f1aece1784104e6787dde3b3da95ed8, type: 3}
   tilemap: {fileID: 0}
   grassTile: {fileID: 11400000, guid: d015b81046666430f8fe11151d92367e, type: 2}
   moveOn: 1

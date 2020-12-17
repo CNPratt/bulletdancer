@@ -25,6 +25,8 @@ public class OrangeController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        OrangeOn = false;
+
         StartCoroutine(pupCycle());
 
         IEnumerator pupCycle()

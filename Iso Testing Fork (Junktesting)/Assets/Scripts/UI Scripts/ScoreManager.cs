@@ -5,8 +5,11 @@ using UnityEngine;
 public class ScoreManager : MonoBehaviour
 {
 
-    public static bool quitOn = false;
+    public static bool quitOn;
 
+    public GameObject grapes;
+    public GameObject lifecoin;
+    public int prevRoundScore;
     public float difficultyshifter = 0;
 
     public bool firstInc;
@@ -31,12 +34,21 @@ public class ScoreManager : MonoBehaviour
 
     private void OnApplicationQuit()
     {
+        Debug.Log("QuitOn true");
         quitOn = true;
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        prevRoundScore = 0;
+        diffFactor = 0;
+        diffLevel = 0;
+        currentDiffTier = 1;
+        percentChange = 1;
+        totalScore = 0;
+
+        quitOn = false;
         totalScore = 0;
         lastscoreChange = 50;
 
@@ -68,7 +80,7 @@ public class ScoreManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(currentDiffTier);
+//        Debug.Log(currentDiffTier);
 
 //        Debug.Log(EnemyAI.enHealthFactor);
         IEnumerator DiffCalc()
@@ -174,6 +186,18 @@ public class ScoreManager : MonoBehaviour
         if((diffLevel + difficultyshifter) >= (1.5 + difficultyshifter) && diffShift == false)
         {
             diffShift = true;
+
+            if(totalScore >= prevRoundScore + 2500 && totalScore < prevRoundScore + 5000)
+            {
+                Instantiate(grapes, new Vector2(-1.5f, 0), transform.rotation);
+            }
+
+            if (totalScore >= prevRoundScore + 5000)
+            {
+                Instantiate(lifecoin, new Vector2(-1.5f, 0), transform.rotation);
+            }
+
+            prevRoundScore = totalScore;
             difficultyshifter = difficultyshifter + 1.5f;
         }
     }

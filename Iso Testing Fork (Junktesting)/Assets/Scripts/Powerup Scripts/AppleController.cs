@@ -25,6 +25,8 @@ public class AppleController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        AppleOn = false;
+
         StartCoroutine(pupCycle());
 
         IEnumerator pupCycle()

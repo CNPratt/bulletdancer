@@ -16,6 +16,8 @@ public class ComboManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        isCounting = false;
+        bonusFactor = 0f;
         comboTimer = 0;
         comboTimeInt = 1.5f;
         comboCounter = 0;

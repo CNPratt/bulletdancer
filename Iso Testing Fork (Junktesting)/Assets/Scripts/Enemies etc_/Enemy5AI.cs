@@ -51,7 +51,9 @@ public class Enemy5AI : MonoBehaviour
 
             if (enHealth <= 0)
             {
+                AudioSource.PlayClipAtPoint(deathSFX, transform.position, 1f);
                 Instantiate(deathAnim, transform.position, transform.rotation);
+                ScoreManager.totalScore = System.Convert.ToInt32(ScoreManager.totalScore + (25 * (1 + ComboManager.bonusFactor)));
                 Destroy(gameObject);
             }
         }
@@ -62,16 +64,13 @@ public class Enemy5AI : MonoBehaviour
             }
     }
 
-    private void OnDestroy()
-    {
-        if (ScoreManager.quitOn == false)
-        {
-            AudioSource.PlayClipAtPoint(deathSFX, transform.position, 1f);
-        }
-        AltEnemySpawner.totalKills = (AltEnemySpawner.totalKills) + 1;
+//    private void OnDestroy()
+//    {
         
-        ScoreManager.totalScore = System.Convert.ToInt32(ScoreManager.totalScore + (25 * (1 + ComboManager.bonusFactor)));
-    }
+//        AltEnemySpawner.totalKills = (AltEnemySpawner.totalKills) + 1;
+        
+//        ScoreManager.totalScore = System.Convert.ToInt32(ScoreManager.totalScore + (25 * (1 + ComboManager.bonusFactor)));
+//    }
 
     public Tilemap tilemap;
     public TileBase grassTile;
@@ -135,8 +134,12 @@ public class Enemy5AI : MonoBehaviour
     {
         if (Weapon.plumDestro == true)
         {
-            Destroy(gameObject);
+            AudioSource.PlayClipAtPoint(deathSFX, transform.position, 1f);
+            AltEnemySpawner.totalKills = (AltEnemySpawner.totalKills) + 1;
+            ComboManager.killsToAdd = ComboManager.killsToAdd + enHealth;
+            ScoreManager.totalScore = System.Convert.ToInt32(ScoreManager.totalScore + (10 * (1 + ComboManager.bonusFactor)));
             Instantiate(deathAnim, transform.position, transform.rotation);
+            Destroy(gameObject);
         }
 
         //        Debug.DrawRay(((enCirc.transform.position + Vector3.up / 4) + new Vector3(-.5f, -.25f) / 2), new Vector2(-.5f, -.25f) * 1f, Color.green);

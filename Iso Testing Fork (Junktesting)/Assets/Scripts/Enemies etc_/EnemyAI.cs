@@ -52,7 +52,10 @@ public class EnemyAI : MonoBehaviour
 
             if (enHealth <= 0)
             {
-                
+                ComboManager.killsToAdd = ComboManager.killsToAdd + 1;
+                AudioSource.PlayClipAtPoint(deathSFX, transform.position, 1f);
+                AltEnemySpawner.totalKills = (AltEnemySpawner.totalKills) + 1;
+                ScoreManager.totalScore = System.Convert.ToInt32(ScoreManager.totalScore + (5 * (1 + ComboManager.bonusFactor)));
                 Instantiate(deathAnim, transform.position, transform.rotation);
                 Destroy(gameObject);
             }
@@ -67,16 +70,13 @@ public class EnemyAI : MonoBehaviour
 
     }
 
-    private void OnDestroy()
-    {
-        if (ScoreManager.quitOn == false)
-        {
-            AudioSource.PlayClipAtPoint(deathSFX, transform.position, 1f);
-        }
-        AltEnemySpawner.totalKills = (AltEnemySpawner.totalKills) + 1;
-        ComboManager.killsToAdd = ComboManager.killsToAdd + 1;
-        ScoreManager.totalScore = System.Convert.ToInt32(ScoreManager.totalScore + (5 * (1 + ComboManager.bonusFactor)));
-    }
+//    private void OnDestroy()
+//    {
+//        
+//        AltEnemySpawner.totalKills = (AltEnemySpawner.totalKills) + 1;
+//        ComboManager.killsToAdd = ComboManager.killsToAdd + 1;
+//        ScoreManager.totalScore = System.Convert.ToInt32(ScoreManager.totalScore + (5 * (1 + ComboManager.bonusFactor)));
+//    }
 
     public Tilemap tilemap;
     public TileBase grassTile;
@@ -152,8 +152,12 @@ public class EnemyAI : MonoBehaviour
 
         if(Weapon.plumDestro == true)
         {
-            Destroy(gameObject);
+            AudioSource.PlayClipAtPoint(deathSFX, transform.position, 1f);
+            AltEnemySpawner.totalKills = (AltEnemySpawner.totalKills) + 1;
+            ComboManager.killsToAdd = ComboManager.killsToAdd + 1;
+            ScoreManager.totalScore = System.Convert.ToInt32(ScoreManager.totalScore + (5 * (1 + ComboManager.bonusFactor)));
             Instantiate(deathAnim, transform.position, transform.rotation);
+            Destroy(gameObject);
         }
 
 

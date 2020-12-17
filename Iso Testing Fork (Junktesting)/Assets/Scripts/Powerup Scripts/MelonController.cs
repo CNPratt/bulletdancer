@@ -25,6 +25,8 @@ public class MelonController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        MelonOn = false;
+
         StartCoroutine(pupCycle());
 
         IEnumerator pupCycle()
